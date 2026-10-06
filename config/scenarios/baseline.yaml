@@ -1,0 +1,26 @@
+name: baseline
+framing: adult             # adult | kid - picks the prompt template
+agents: 40
+agent_type: llm            # llm | random
+days: 12
+seeds: [1, 2, 3]
+starting_packs: 3
+starting_money: 30         # in pounds; pennies allowed, e.g. 30.50
+currency: "£"              # what agents and charts call the money, e.g. "£" or "tokens"
+goal: "Over the term, end up with a collection you are happy with, without wasting your money. What 'happy' means depends on who you are."
+network:
+  mode: groups             # groups | everyone (anyone can meet anyone; the 3 lines below are then ignored)
+  group_size: [4, 6]       # friendship groups of 4-6 agents
+  popular_count: 6         # agents with friends outside their own group
+  popular_links: 3         # how many other groups each popular agent is linked into
+informed_override: {}      # e.g. {A03: true} to change one agent's knowledge; unused in the baseline
+active_share: 0.5          # each day a random half choose an action; everyone can still receive offers
+board_visible: 5
+max_incoming_per_day: 2
+negotiation_max_messages: 4
+price_k: 2
+recent_events: 5
+model: claude-haiku-4-5
+llm: {concurrency: 8}
+max_cost_usd: 5
+events: []

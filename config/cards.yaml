@@ -1,0 +1,47 @@
+# PLACEHOLDER card set - rewrite freely, but keep the structure.
+set_name: "Hollowmere"
+
+pack:
+  price: 10                # pounds; the anchor for everything else
+  slots:                   # one entry per card in a pack
+    - {rarity: common, count: 3}
+    - {rarity: uncommon, count: 1}
+    - {rarity_weights: {rare: 0.85, chase: 0.15}, count: 1}
+
+# Starting price per rarity, in pounds (pennies allowed, e.g. 1.25). A card can override it with its own `start_price`.
+start_prices: {common: 1, uncommon: 3, rare: 7, chase: 25}
+
+# `favourite_weight` (default 1) = how likely a fan picks this card as their favourite.
+cards:
+  # 2 chase, 4 rare, 6 uncommon, 12 common = 24 cards
+  - {id: C01, name: "Velvet Comet", rarity: chase}
+  - {id: C02, name: "Iron Lantern", rarity: chase}
+  - {id: R01, name: "Thornback Ox", rarity: rare}
+  - {id: R02, name: "Glass Heron", rarity: rare}
+  - {id: R03, name: "Ember Abbot", rarity: rare}
+  - {id: R04, name: "Tidewright", rarity: rare}
+  - {id: U01, name: "Pocket Dragonet", rarity: uncommon, favourite_weight: 5}   # fan favourite
+  - {id: U02, name: "Moss Golem", rarity: uncommon}
+  - {id: U03, name: "Lamplight Fox", rarity: uncommon}
+  - {id: U04, name: "Cinder Wren", rarity: uncommon}
+  - {id: U05, name: "Salt Warden", rarity: uncommon}
+  - {id: U06, name: "Hollow Piper", rarity: uncommon}
+  - {id: M01, name: "Pebble Newt", rarity: common}
+  - {id: M02, name: "Reed Sprite", rarity: common}
+  - {id: M03, name: "Dust Mole", rarity: common}
+  - {id: M04, name: "Bramble Hare", rarity: common}
+  - {id: M05, name: "Puddle Imp", rarity: common}
+  - {id: M06, name: "Ash Beetle", rarity: common}
+  - {id: M07, name: "Fern Snail", rarity: common}
+  - {id: M08, name: "Gull Scamp", rarity: common}
+  - {id: M09, name: "Clay Toad", rarity: common}
+  - {id: M10, name: "Wisp Moth", rarity: common}
+  - {id: M11, name: "Rust Crab", rarity: common}
+  - {id: M12, name: "Thistle Kit", rarity: common}
+
+tracked:                   # 9 now; the 10th (a new-set card) arrives with events in iteration 2
+  chase: [C01, C02]
+  fan_favourite: [U01]
+  mid_tier: [R01, R02, U02]
+  common: [M01, M02]
+  hype_target: [R03]

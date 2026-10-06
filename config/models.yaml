@@ -1,0 +1,5 @@
+# LLM model ids and prices in US dollars per million tokens (input / output).
+# Prices as of Oct 2026. CHECK them at docs.claude.com before quoting any costs.
+models:
+  claude-haiku-4-5:  {input: 1.0, output: 5.0}     # default: cheap and fast
+  claude-sonnet-5-5: {input: 2.0, output: 10.0}    # stronger model for sensitivity checks

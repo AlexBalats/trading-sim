@@ -1,0 +1,55 @@
+# PLACEHOLDER personas - rewrite freely, but keep the structure.
+version: 2                 # bump whenever wording changes; never edit mid-experiment
+
+# Desire: how much an agent wants a card, from 1 (not at all) to 10 (dream card).
+# Each agent gets a personal value for every card: start price x a multiplier
+# drawn from that level's range. Agents are told the WORDS, never the value.
+# Happiness at the end = money left + personal value of the cards held.
+desire_scale:
+  1:  {multiplier: [0.40, 0.50], words: "you really don't want it"}
+  2:  {multiplier: [0.50, 0.60], words: "you don't want it"}
+  3:  {multiplier: [0.60, 0.75], words: "not for you"}
+  4:  {multiplier: [0.75, 0.90], words: "not really your thing"}
+  5:  {multiplier: [0.90, 1.10], words: "you don't mind it either way"}
+  6:  {multiplier: [1.10, 1.25], words: "it's quite nice"}
+  7:  {multiplier: [1.25, 1.40], words: "you like it"}
+  8:  {multiplier: [1.40, 1.55], words: "you really like it"}
+  9:  {multiplier: [1.55, 1.70], words: "you love it"}
+  10: {multiplier: [1.70, 2.00], words: "your dream card"}
+
+# informed: true  -> the agent sees the official price list
+# informed: false -> the agent sees no prices at all
+# {favourite_card} is filled in with the agent's favourite card name.
+# desire:
+#   base:      every card's score - a number, or [low, high] for a random score per card
+#   favourite: the score for the agent's favourite card (leave out for no special favourite)
+#   extra:     {count: N, score: ...} - N other cards, picked at random, get this score
+#              (cards with a higher favourite_weight in cards.yaml get picked more often)
+types:
+  collector:
+    informed: false
+    text: "You collect for love, not money. Your favourite card is {favourite_card} and you will pay well over the odds for it. You rarely sell cards you like."
+    desire: {base: 5, favourite: 10, extra: {count: 2, score: [7, 8]}}
+  flipper:
+    informed: true
+    text: "You trade for profit. You watch prices closely, buy what looks cheap and sell what looks expensive."
+    desire: {base: 5}
+  momentum:
+    informed: true
+    text: "You follow the crowd. If people are talking about a card or its price is rising, you want in before it's too late."
+    desire: {base: 5}
+  value:
+    informed: true
+    text: "You are careful with money. You work out what a card is really worth and don't let hype push you around."
+    desire: {base: 5}
+  casual:
+    informed: false
+    text: "You trade now and then for cards you think look cool. You don't follow prices."
+    desire: {base: 5, extra: {count: 3, score: [7, 8]}}
+  newcomer:
+    informed: false
+    text: "You are new to this and don't know what anything is worth. You are a bit nervous about being ripped off."
+    desire: {base: [2, 8]}
+
+# Share of agents of each type. Must add up to 1.
+mix: {collector: 0.2, flipper: 0.15, momentum: 0.15, value: 0.2, casual: 0.15, newcomer: 0.15}   # ~50% informed
